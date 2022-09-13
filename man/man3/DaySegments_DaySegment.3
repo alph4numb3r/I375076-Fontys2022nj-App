@@ -1,0 +1,228 @@
+.TH "DaySegments.DaySegment" 3 "Tue Sep 13 2022" "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+DaySegments.DaySegment \- A day segment is a part of a day, specifically either night, morning, afternoon or evening\&.   
+
+.SH SYNOPSIS
+.br
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBDaySegment\fP (DateTime timestamp)"
+.br
+.RI "Constructs a \fBDaySegment\fP from a given DateTime\&.  "
+.ti -1c
+.RI "\fBDaySegment\fP (string segment)"
+.br
+.RI "Attempts to construct a \fBDaySegment\fP from the given string\&.  "
+.ti -1c
+.RI "byte \fBToNumeric\fP ()"
+.br
+.ti -1c
+.RI "override string \fBToString\fP ()"
+.br
+.RI "Converts the value of this \fBDaySegment\fP to its equivalent string representation\&.  "
+.ti -1c
+.RI "string \fBToString\fP (string format)"
+.br
+.RI "Converts the value of this \fBDaySegment\fP to its equivalent string representation using the specified format\&.  "
+.in -1c
+.SS "Static Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "static \fBoperator DaySegment\fP (DateTime timestamp)"
+.br
+.ti -1c
+.RI "static implicit \fBoperator byte\fP (\fBDaySegment\fP daysegment)"
+.br
+.RI "Converts the value of this \fBDaySegment\fP to its equivalent byte representation\&.  "
+.ti -1c
+.RI "static implicit \fBoperator string\fP (\fBDaySegment\fP daysegment)"
+.br
+.in -1c
+.SS "Static Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "static readonly \fBDaySegment\fP \fBNight\fP"
+.br
+.RI "Represents a time between midnight and 6 AM "
+.ti -1c
+.RI "static readonly \fBDaySegment\fP \fBMorning\fP"
+.br
+.RI "Represents a time between 6 AM and noon "
+.ti -1c
+.RI "static readonly \fBDaySegment\fP \fBAfternoon\fP"
+.br
+.RI "Represents a time between noon and 6 PM "
+.ti -1c
+.RI "static readonly \fBDaySegment\fP \fBEvening\fP"
+.br
+.RI "Represents a time between 6 PM and midnight "
+.in -1c
+.SH "Detailed Description"
+.PP 
+A day segment is a part of a day, specifically either night, morning, afternoon or evening\&.  
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "DaySegments\&.DaySegment\&.DaySegment (DateTime timestamp)\fC [inline]\fP"
+
+.PP
+Constructs a \fBDaySegment\fP from a given DateTime\&.  
+.PP
+\fBParameters\fP
+.RS 4
+\fItimestamp\fP 
+.RE
+.PP
+
+.SS "DaySegments\&.DaySegment\&.DaySegment (string segment)\fC [inline]\fP"
+
+.PP
+Attempts to construct a \fBDaySegment\fP from the given string\&.  
+.PP
+\fBParameters\fP
+.RS 4
+\fIsegment\fP The string to parse from
+.RE
+.PP
+\fBExceptions\fP
+.RS 4
+\fIArgumentException\fP Thrown when the string cannot be parsed
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "static implicit DaySegments\&.DaySegment\&.operator byte (\fBDaySegment\fP daysegment)\fC [static]\fP"
+
+.PP
+Converts the value of this \fBDaySegment\fP to its equivalent byte representation\&.  
+.PP
+\fBSee also\fP
+.RS 4
+\fBToNumeric()\fP
+.PP
+.RE
+.PP
+
+.SS "static DaySegments\&.DaySegment\&.operator \fBDaySegment\fP (DateTime timestamp)\fC [explicit]\fP, \fC [static]\fP"
+
+.PP
+\fBSee also\fP
+.RS 4
+\fBDaySegment(DateTime)\fP
+.PP
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fItimestamp\fP DateTime to convert from\&.
+.RE
+.PP
+
+.SS "static implicit DaySegments\&.DaySegment\&.operator string (\fBDaySegment\fP daysegment)\fC [static]\fP"
+
+.PP
+\fBSee also\fP
+.RS 4
+\fBToString()\fP, \fBToString(string)\fP
+.PP
+.RE
+.PP
+
+.SS "byte DaySegments\&.DaySegment\&.ToNumeric ()"
+
+.PP
+\fBSee also\fP
+.RS 4
+implicit operator byte
+.PP
+.RE
+.PP
+
+.SS "override string DaySegments\&.DaySegment\&.ToString ()"
+
+.PP
+Converts the value of this \fBDaySegment\fP to its equivalent string representation\&.  
+.PP
+\fBSee also\fP
+.RS 4
+implicit operator string, \fBToString(string)\fP
+.PP
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The string representation of the value of this instance\&.
+.RE
+.PP
+
+.SS "string DaySegments\&.DaySegment\&.ToString (string format)"
+
+.PP
+Converts the value of this \fBDaySegment\fP to its equivalent string representation using the specified format\&.  
+.PP
+\fBSee also\fP
+.RS 4
+implicit operator string, \fBToString()\fP
+.PP
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIformat\fP A format string\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The string representation of the value of this instance as specified by format\&.
+.RE
+.PP
+
+.SH "Member Data Documentation"
+.PP 
+.SS "readonly \fBDaySegment\fP DaySegments\&.DaySegment\&.Afternoon\fC [static]\fP"
+\fBInitial value:\fP
+.PP
+.nf
+= new
+  (daysegmentenum\&.Afternoon)
+.fi
+.PP
+Represents a time between noon and 6 PM 
+.SS "readonly \fBDaySegment\fP DaySegments\&.DaySegment\&.Evening\fC [static]\fP"
+\fBInitial value:\fP
+.PP
+.nf
+= new
+  (daysegmentenum\&.Evening)
+.fi
+.PP
+Represents a time between 6 PM and midnight 
+.SS "readonly \fBDaySegment\fP DaySegments\&.DaySegment\&.Morning\fC [static]\fP"
+\fBInitial value:\fP
+.PP
+.nf
+= new
+  (daysegmentenum\&.Morning)
+.fi
+.PP
+Represents a time between 6 AM and noon 
+.SS "readonly \fBDaySegment\fP DaySegments\&.DaySegment\&.Night\fC [static]\fP"
+\fBInitial value:\fP
+.PP
+.nf
+= new
+  (daysegmentenum\&.Night)
+.fi
+.PP
+Represents a time between midnight and 6 AM 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

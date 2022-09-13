@@ -1,28 +1,43 @@
+using DaySegments;
 internal class Program
 {
-  enum DaySegment : byte { Night, Morning, Afternoon, Evening }
-  private static int Main(string[] args)
-  {    
-    DateTime timestamp;
-    if (args.Length > 0) 
-    {
-      if (!DateTime.TryParse(args[0], out timestamp)){
-        Console.WriteLine("Invalid timestamp given: {0}", args[0]);
-        return 1;
-      }
-    }else{
-      timestamp = DateTime.Now;
-    }
-    Console.WriteLine("Hello, World!");
-    Console.WriteLine("Good {0}! It is currently {1}", GetDaySegment(timestamp), timestamp.ToShortTimeString());
-    return 0;
-  }
   /// <summary>
-  /// Gets the day segment of the given timestamp, defaulting to now if no timestamp is given.
+  /// Converts a given timestamp to a day segment
   /// </summary>
-  /// <param name="timestamp">The timestamp to get the day segment for. Defaults to now if not specified.</param>
-  private static DaySegment GetDaySegment(DateTime? timestamp = null) {
-    timestamp ??= DateTime.Now;
-    return (DaySegment) (timestamp.Value.Hour / 6);
+  /// <param name="args"></param>
+  /// <arg name="timestamp">The timestamp to convert</arg>
+  /// <returns>Exit code</returns>
+  public static int Main(string[] args)
+  {
+    RootCommand rootcommand = new("Converts a given timestamp to a day segment");
+
+    Argument<DateTime> TimestampArguemnt = new(
+        name: "timestamp",
+        description: "The timestamp to convert to a day segment.",
+        parse: result =>
+        {
+          string resultString = (result.Tokens[0].Value) ?? "";
+          if (resultString == ""
+              || resultString == "''"
+              || resultString.ToLowerInvariant() == "now")
+          { return DateTime.Now; }
+          else if (DateTime.TryParse(resultString, out DateTime resultDateTime))
+          { return resultDateTime; }
+          else
+          {
+            result.ErrorMessage = "Could not parse the timestamp argument.";
+            return DateTime.UnixEpoch;
+          }
+        }
+    );
+    rootcommand.Add(TimestampArguemnt);
+
+    rootcommand.SetHandler((timestamp) =>
+    {
+      var daysegment = (DaySegment)timestamp;
+      Console.WriteLine(daysegment.ToString());
+    }, TimestampArguemnt);
+
+    return rootcommand.Invoke(args);
   }
 }
